@@ -3,5 +3,5 @@ cerveza_homepage:
     defaults: { _controller: CervezaBundle:Default:index, id:1 }
 
 cerveza_homepage:
-    path:     /{nombre}/{pais}/{poblacion}/{tipo}
+    path:     /{nombre}/{pais}
     defaults: { _controller: CervezaBundle:Default:insertarCerveza }
