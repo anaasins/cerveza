@@ -35,7 +35,7 @@ class DefaultController extends Controller
 
       $em->flush();
 
-      return $this->redirectToRoute('index');
+      return $this->render('CervezaBundle:Default:creada.html.twig');
     }
 
 }

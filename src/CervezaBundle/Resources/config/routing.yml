@@ -2,6 +2,6 @@ cerveza_homepage:
     path:     /{id}
     defaults: { _controller: CervezaBundle:Default:index, id:1 }
 
-cerveza_homepage:
-    path:     /{nombre}/{pais}
-    defaults: { _controller: CervezaBundle:Default:insertarCerveza }
+insertarCerveza:
+    path:     /insertarCerveza/{nombre}/{pais}
+    defaults: { _controller: CervezaBundle:Default:insertarCerveza, nombre:'er',  pais:'rhefui' }
