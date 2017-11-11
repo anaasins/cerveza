@@ -4,6 +4,8 @@ namespace CervezaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use CervezaBundle\Entity\Cervezas;
+use CervezaBundle\Form\CervezasType;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -36,6 +38,25 @@ class DefaultController extends Controller
       $em->flush();
 
       return $this->render('CervezaBundle:Default:creada.html.twig');
+    }
+
+    public function nuevaAction(Request $request)
+    {
+      $cervezas= new Cervezas();
+      $form= $this->createForm(CervezasType::class, $cervezas);
+
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+
+         $cerveza = $form->getData();
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($cervezas);
+         $em->flush();
+
+         return $this->render('CervezaBundle:Default:creada.html.twig');
+   }
+
+      return $this-> render('CervezaBundle:Default:nueva.html.twig', array('form'=>$form->createView()));
     }
 
 }
