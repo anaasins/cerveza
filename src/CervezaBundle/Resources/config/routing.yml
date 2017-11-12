@@ -13,3 +13,7 @@ creada:
 nuevaCerveza:
     path:     /nueva
     defaults: { _controller: CervezaBundle:Default:nueva}
+
+editarCerveza:
+    path:     /editar/{id}
+    defaults: { _controller: CervezaBundle:Default:editarCerveza}

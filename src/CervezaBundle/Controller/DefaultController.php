@@ -54,9 +54,28 @@ class DefaultController extends Controller
          $em->flush();
 
          return $this->render('CervezaBundle:Default:creada.html.twig');
-   }
+       }
 
       return $this-> render('CervezaBundle:Default:nueva.html.twig', array('form'=>$form->createView()));
+    }
+
+    public function editarCervezaAction(Request $request, $id)
+    {
+      $cerveza=$this->getDoctrine()->getRepository(Cervezas::class)->find($id);
+
+      $form=$this->createForm(CervezasType::class, $cerveza);
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+
+         //$cerveza = $form->getData();
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($cerveza);
+         $em->flush();
+
+         return $this->render('CervezaBundle:Default:creada.html.twig');
+       }
+
+      return $this-> render('CervezaBundle:Default:editar.html.twig', array('form'=>$form->createView()));
     }
 
 }
